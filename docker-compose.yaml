@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+  tailscale:
+    image: testtail
+    environment:
+      TAILSCALE_AUTH_KEY: ${TAILSCALE_AUTH_KEY:?err}
+      TAILSCALE_HOSTNAME: ${TAILSCALE_HOSTNAME:-example-service}
+      TAILSCALE_SERVE_PORT: 80
+      TAILSCALE_STATEDIR_ARG: "/var/lib/tailscale_state/"
+    volumes:
+      - /var/lib/tailscale_state/
+  example-service:
+    image: nginxdemos/hello
+    network_mode: service:tailscale
