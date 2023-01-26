@@ -2,7 +2,7 @@
 trap 'kill -TERM $PID' TERM INT
 
 echo "Starting Tailscale daemon"
-tailscaled --tun=userspace-networking --statedir=${TAILSCALE_STATEDIR_ARG} &
+tailscaled --tun=userspace-networking --statedir=/var/lib/tailscale_state/ &
 PID=$!
 
 echo "Starting Tailscale"
