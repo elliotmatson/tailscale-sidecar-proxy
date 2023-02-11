@@ -1,5 +1,16 @@
 #!/bin/ash
-trap 'kill -TERM $PID' TERM INT
+
+cleanup() {
+    echo "Cleaning up..."
+    until tailscale logout; do
+        sleep 0.1
+    done
+    kill -TERM ${PID}
+    wait ${PID}
+    exit 1
+}
+
+trap cleanup INT TERM
 
 echo "Starting Tailscale daemon"
 tailscaled --tun=userspace-networking --statedir=/var/lib/tailscale_state/ &
@@ -15,5 +26,4 @@ until tailscale serve / proxy ${TAILSCALE_SERVE_PORT}; do
     sleep 0.1
 done
 tailscale status
-wait ${PID}
 wait ${PID}
