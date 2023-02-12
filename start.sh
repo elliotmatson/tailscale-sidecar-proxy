@@ -27,7 +27,7 @@ until tailscale serve / proxy ${TAILSCALE_SERVE_PORT}; do
 done
 
 # if TAILSCALE_FUNNEL is set, add a funnel entry
-if $TAILSCALE_FUNNEL; then
+if ${TAILSCALE_FUNNEL:-false}; then
     echo "adding funnel entry"
     until tailscale serve funnel on; do
         sleep 0.1

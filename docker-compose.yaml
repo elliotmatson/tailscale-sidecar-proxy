@@ -4,7 +4,7 @@ services:
     image: tailscale-sidecar-proxy
     environment:
       TAILSCALE_AUTH_KEY: ${TAILSCALE_AUTH_KEY:?err}
-      TAILSCALE_HOSTNAME: test service
+      TAILSCALE_HOSTNAME: test-service
       TAILSCALE_FUNNEL: false
       TAILSCALE_SERVE_PORT: 80
     volumes:
