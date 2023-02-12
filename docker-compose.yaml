@@ -5,6 +5,7 @@ services:
     environment:
       TAILSCALE_AUTH_KEY: ${TAILSCALE_AUTH_KEY:?err}
       TAILSCALE_HOSTNAME: test service
+      TAILSCALE_FUNNEL: false
       TAILSCALE_SERVE_PORT: 80
     volumes:
       - /var/lib/tailscale_state/
