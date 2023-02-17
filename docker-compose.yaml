@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   tailscale:
-    image: tailscale-sidecar-proxy
+    image: ghcr.io/elliotmatson/tailscale-sidecar-proxy:latest
     environment:
       TAILSCALE_AUTH_KEY: ${TAILSCALE_AUTH_KEY:?err}
       TAILSCALE_HOSTNAME: test-service
