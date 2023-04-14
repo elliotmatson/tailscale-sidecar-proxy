@@ -22,7 +22,7 @@ until tailscale up --authkey="${TAILSCALE_AUTH_KEY}" --hostname="${TAILSCALE_HOS
 done
 
 echo "adding proxy entry"
-until tailscale serve / proxy ${TAILSCALE_SERVE_PORT}; do
+until tailscale serve https / http://localhost:${TAILSCALE_SERVE_PORT}; do
     sleep 0.1
 done
 
