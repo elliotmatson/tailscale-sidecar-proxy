@@ -29,7 +29,7 @@ done
 # if TAILSCALE_FUNNEL is set, add a funnel entry
 if ${TAILSCALE_FUNNEL:-false}; then
     echo "adding funnel entry"
-    until tailscale serve funnel on; do
+    until tailscale funnel 443 on; do
         sleep 0.1
     done
 fi
