@@ -6,10 +6,6 @@ name: Docker
 # documentation.
 
 on:
-  #push:
-    #branches: [ "main" ]
-    # Publish semver tags as releases.
-    #tags: [ 'v*.*.*' ]
   release:
     types: [published]
   pull_request:
