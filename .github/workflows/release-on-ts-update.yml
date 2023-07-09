@@ -9,6 +9,8 @@ jobs:
   if_merged:
     if: github.event.pull_request.merged && contains(github.event.pull_request.title, 'Update tailscale/tailscale Docker tag')
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
     - id: get-version
       run: |
