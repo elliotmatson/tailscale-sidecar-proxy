@@ -4,3 +4,18 @@ on:
   pull_request:
     types:
       - closed
+
+jobs:
+  if_merged:
+    if: github.event.pull_request.merged && contains(github.event.pull_request.title, 'Update tailscale/tailscale Docker tag')
+    runs-on: ubuntu-latest
+    steps:
+    - id: get-version
+      run: |
+        version=$(echo ${{github.event.pull_request.title}} | grep -Eo 'v[0-9]+\.[0-9]+\.[0-9]+')
+        echo "::set-output name=id::$id"
+    - uses: actions/checkout@v3
+    - uses: ncipollo/release-action@v1
+      with:
+        generateReleaseNotes: true
+        tag: ${{steps.get-version.outputs.version}}
