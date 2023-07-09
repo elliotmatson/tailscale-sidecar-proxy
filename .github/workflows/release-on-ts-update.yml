@@ -1,0 +1,6 @@
+name: TS Update
+
+on:
+  pull_request:
+    types:
+      - closed
