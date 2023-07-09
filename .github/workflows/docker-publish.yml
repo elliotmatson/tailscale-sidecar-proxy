@@ -66,7 +66,7 @@ jobs:
         id: build-and-push
         uses: docker/build-push-action@f05b754b571695bf93164b9b54cb8e2e96e22706
         with:
-          platforms: linux/amd64, linux/arm64
+          platforms: linux/amd64, linux/arm64, linux/arm/v7
           context: .
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
