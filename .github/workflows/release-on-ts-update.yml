@@ -13,7 +13,7 @@ jobs:
     - id: get-version
       run: |
         version=$(echo ${{github.event.pull_request.title}} | grep -Eo 'v[0-9]+\.[0-9]+\.[0-9]+')
-        echo "::set-output name=id::$id"
+        run: echo "version=$version" >> $GITHUB_OUTPUT
     - uses: actions/checkout@v3
     - uses: ncipollo/release-action@v1
       with:
