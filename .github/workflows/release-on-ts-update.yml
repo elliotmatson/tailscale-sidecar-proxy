@@ -21,3 +21,6 @@ jobs:
       with:
         generateReleaseNotes: true
         tag: ${{steps.get-version.outputs.version}}
+    - id: docker-publish
+      uses: ./.github/actions/docker-publish
+    

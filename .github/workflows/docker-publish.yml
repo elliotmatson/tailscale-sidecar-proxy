@@ -6,8 +6,8 @@ name: Docker
 # documentation.
 
 on:
-  release:
-    types: [released]
+  workflow_dispatch:
+  workflow_call:
   pull_request:
     branches: [ "main" ]
 
