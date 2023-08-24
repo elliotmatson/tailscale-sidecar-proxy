@@ -6,6 +6,8 @@ name: Docker
 # documentation.
 
 on:
+  release:
+    types: [released]
   pull_request:
     branches: [ "main" ]
 
