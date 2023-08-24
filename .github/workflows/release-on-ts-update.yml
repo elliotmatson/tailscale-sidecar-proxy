@@ -21,5 +21,4 @@ jobs:
       with:
         generateReleaseNotes: true
         tag: ${{steps.get-version.outputs.version}}
-  docker-publish:
-    uses: ./.github/actions/docker-publish.yml
+        token: ${{secrets.RELEASE_TOKEN}}
