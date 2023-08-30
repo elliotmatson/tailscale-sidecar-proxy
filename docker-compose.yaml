@@ -7,8 +7,6 @@ services:
       TAILSCALE_HOSTNAME: test-service
       TAILSCALE_FUNNEL: false
       TAILSCALE_SERVE_PORT: 80
-    volumes:
-      - /var/lib/tailscale_state/
   example-service:
     image: nginxdemos/hello
     network_mode: service:tailscale
