@@ -3,10 +3,20 @@ services:
   tailscale:
     image: ghcr.io/elliotmatson/tailscale-sidecar-proxy:latest
     environment:
+      TAILSCALE_STATE_DIR: /var/lib/tailscale
       TAILSCALE_AUTH_KEY: ${TAILSCALE_AUTH_KEY:?err}
       TAILSCALE_HOSTNAME: test-service
-      TAILSCALE_FUNNEL: false
+      #TAILSCALE_SSH: true
+      #TAILSCALE_FUNNEL:
+      #TAILSCALE_EXIT_NODE:
       TAILSCALE_SERVE_PORT: 80
+      TAILSCALE_SERVE_MODE: https
+      TAILSCALE_SERVE_SOURCE_MODE: http
+    volumes:
+      - tailscale-state:/var/lib/tailscale
   example-service:
     image: nginxdemos/hello
     network_mode: service:tailscale
+
+volumes:
+  tailscale-state:
