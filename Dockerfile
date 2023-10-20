@@ -15,4 +15,6 @@ RUN if [ "$TARGETARCH" = "amd64" ]; then ARCHITECTURE=x86_64; elif [ "$TARGETARC
 ENTRYPOINT ["/init"]
 CMD []
 
+HEALTHCHECK --interval=30s --timeout=5s --start-period=20s CMD tailscale ping ${TAILSCALE_HOSTNAME} || exit 1
+
 COPY root/ /
