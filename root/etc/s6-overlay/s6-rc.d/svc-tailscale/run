@@ -27,12 +27,13 @@ tailscale up $FLAGS
 
 # configure serve
 if [ -v TAILSCALE_SERVE_PORT ] && [ -v TAILSCALE_SERVE_MODE ] && [ -v TAILSCALE_SERVE_SOURCE_MODE ]; then
-    echo '[i] running `tailscale serve '"${TAILSCALE_SERVE_MODE}"':443 / '"${TAILSCALE_SERVE_SOURCE_MODE}"'://localhost:'"${TAILSCALE_SERVE_PORT}"'`'
-    tailscale serve "${TAILSCALE_SERVE_MODE}":443 / "${TAILSCALE_SERVE_SOURCE_MODE}"://localhost:"${TAILSCALE_SERVE_PORT}"
-fi
-
-# configure funnel
-if [ -v TAILSCALE_FUNNEL ]; then
-    echo '[i] running `tailscale funnel 443 on`'
-    tailscale funnel 443 on
+    if [ -v TAILSCALE_FUNNEL ]; then
+        echo '[!] TAILSCALE_FUNNEL is enabled!'
+        echo '[i] running `tailscale funnel -bg '"${TAILSCALE_SERVE_SOURCE_MODE}"'://localhost:'"${TAILSCALE_SERVE_PORT}"'`'
+        tailscale funnel -bg "${TAILSCALE_SERVE_SOURCE_MODE}"://localhost:"${TAILSCALE_SERVE_PORT}"
+    else
+        echo '[!] TAILSCALE_FUNNEL is disabled!'
+        echo '[i] running `tailscale serve -bg '"${TAILSCALE_SERVE_SOURCE_MODE}"'://localhost:'"${TAILSCALE_SERVE_PORT}"'`'
+        tailscale serve -bg "${TAILSCALE_SERVE_SOURCE_MODE}"://localhost:"${TAILSCALE_SERVE_PORT}"
+    fi
 fi
