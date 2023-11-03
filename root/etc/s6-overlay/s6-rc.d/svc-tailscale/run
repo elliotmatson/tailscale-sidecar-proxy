@@ -14,7 +14,7 @@ if [ -v TAILSCALE_HOSTNAME ]; then
 fi
 
 if [ -v TAILSCALE_SSH ]; then
-    FLAGS="${FLAGS} --ssh=true"
+    FLAGS="${FLAGS} --ssh=${TAILSCALE_SSH}"
 fi
 
 if [ -v TAILSCALE_EXIT_NODE ]; then
@@ -27,7 +27,7 @@ tailscale up $FLAGS
 
 # configure serve
 if [ -v TAILSCALE_SERVE_PORT ]; then
-    if [ -v TAILSCALE_FUNNEL == "true"]; then
+    if [ $TAILSCALE_FUNNEL = "true" ]; then
         echo '[!] TAILSCALE_FUNNEL is enabled!'
         echo '[i] running `tailscale funnel -bg '"${TAILSCALE_SERVE_SOURCE_MODE:-http}"'://localhost:'"${TAILSCALE_SERVE_PORT}"'`'
         tailscale funnel -bg "${TAILSCALE_SERVE_SOURCE_MODE:-http}"://localhost:"${TAILSCALE_SERVE_PORT}"
