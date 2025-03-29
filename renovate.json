@@ -6,11 +6,13 @@
   "lockFileMaintenance": {
     "enabled": true,
     "automerge": true
+    "automergeType": "branch"
   },
   "packageRules": [
     {
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
       "automerge": true
+      "automergeType": "branch"
     }
   ]
 }
