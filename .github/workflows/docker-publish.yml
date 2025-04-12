@@ -9,7 +9,7 @@ on:
   release:
     types: [ released ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ main, renovate/** ]
 
 env:
   # Use docker.io for Docker Hub if empty
