@@ -1,4 +1,4 @@
-FROM ghcr.io/tailscale/tailscale:v1.84.3
+FROM ghcr.io/tailscale/tailscale:v1.86.2
 ARG S6_OVERLAY_VERSION=3.1.5.0
 
 RUN apk add --no-cache wget bash iptables jq
